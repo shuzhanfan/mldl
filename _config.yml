@@ -5,7 +5,7 @@ email: sfan2@lsu.edu
 description: Shuzhan Fan's personal website.
 timezone: "-0600"
 
-repository: shuzhanfan/ml
+repository: shuzhanfan/mldl
 baseurl: ""
 url: https://shuzhanfan.github.io/mldl/
 
