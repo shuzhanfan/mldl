@@ -6,7 +6,7 @@ description: Shuzhan Fan's personal website.
 timezone: "-0600"
 
 repository: shuzhanfan/mldl
-baseurl: https://shuzhanfan.github.io/mldl/
+baseurl: ""
 url: https://shuzhanfan.github.io/mldl/
 
 permalink: /:year/:month/:title/
