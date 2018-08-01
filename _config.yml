@@ -9,7 +9,7 @@ repository: shuzhanfan/mldl
 baseurl: https://shuzhanfan.github.io/mldl/
 url: https://shuzhanfan.github.io/mldl/
 
-permalink: /mldl/:year/:month/:title/
+permalink: /:year/:month/:title/
 
 # Format
 markdown: kramdown
@@ -20,7 +20,7 @@ redcarpet:
 # Pagination
 gems: [jekyll-paginate]
 paginate: 10
-paginate_path: "/mldl/page:num/"
+paginate_path: "/page:num/"
 
 # Social
 social:
@@ -36,10 +36,10 @@ plugins:
 collections:
     random-thoughts:
         output: true
-        permalink: /mldl/:collection/:year/:month/:title/
+        permalink: /:collection/:year/:month/:title/
     machine-learning:
         output: true
-        permalink: /mldl/:collection/:year/:month/:title/
+        permalink: /:collection/:year/:month/:title/
 
 # Staticman comments (full configuration in staticman.yml)
 staticman:
