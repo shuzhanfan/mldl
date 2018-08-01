@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+<link rel="stylesheet" type="text/css" href="{{ "/assets/css/article.css" | prepend: site.baseurl }}">
+
+{% if page.mathjax %}
+    {% include mathjax_support %}
+{% endif %}
+
+<div class="page-wrapper">
+    <div class="container--text">
+        {{ content }}
+        {% include topics.html %}
+        <div id='written-time'>Written by Shuzhan Fan on {{ page.date | date: '%b %-d, %Y'}}<div>
+        {% include share-bar.html %}
+    </div>
+</div>
+
+{% include read-more.html %}
+
+<!-- add the return to top button  -->
+{% include return_top.html %}

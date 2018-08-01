@@ -1,0 +1,51 @@
+# Basic
+title: Shuzhan Fan
+author: Shuzhan Fan
+email: sfan2@lsu.edu
+description: Shuzhan Fan's personal website.
+timezone: "-0600"
+
+repository: shuzhanfan/ml
+baseurl: ""
+url: https://shuzhanfan.github.io/mldl/
+
+permalink: /mldl/:year/:month/:title/
+
+# Format
+markdown: kramdown
+highlighter: rouge
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", tables]
+
+# Pagination
+gems: [jekyll-paginate]
+paginate: 10
+paginate_path: "/mldl/page:num/"
+
+# Social
+social:
+    github: shuzhanfan
+    mail: sfan2@lsu.edu
+
+# Plugins
+plugins:
+    - jekyll-seo-tag
+    - jemoji
+
+#Collections
+collections:
+    random-thoughts:
+        output: true
+        permalink: /mldl/:collection/:year/:month/:title/
+    machine-learning:
+        output: true
+        permalink: /mldl/:collection/:year/:month/:title/
+
+# Staticman comments (full configuration in staticman.yml)
+staticman:
+    branch                 : "master"
+
+# reCaptcha keys
+reCaptcha:
+    siteKey: "6Le4_T0UAAAAAJFB-3XtwuU86hxsw22z68niAPz3"
+    secret: "shn6WLdmu/HtyFh5KxOvdCYwNqscJlvhzq9bH+B0PfoJ0nr4GSRsbQ1587rk7rdeNth58GoSedk2daB4IUjFqHZQQe27UrtwBaIoVG9nT8tbX9vhpzmYidoaFeE1GNdlCN9d+OZj+3uBylR3CGoR5jKNIVX5BueR6S1QxUGqT1g="
