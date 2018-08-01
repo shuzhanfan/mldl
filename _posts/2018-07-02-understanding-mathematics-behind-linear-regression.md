@@ -2,7 +2,7 @@
 layout:         post
 title:          Understanding the mathematics behind linear regression
 subtitle:
-card-image:     /assets/images/cards/cat21.gif
+card-image:     /mldl/assets/images/cards/cat21.gif
 date:           2018-07-02 21:00:00
 tags:           [machine&nbsp;learning]
 categories:     [machine&nbsp;learning, algorithms]

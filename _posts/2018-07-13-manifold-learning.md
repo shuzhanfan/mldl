@@ -2,7 +2,7 @@
 layout:         post
 title:          Manifold Learning
 subtitle:
-card-image:     /assets/images/cards/cat.gif
+card-image:     /mldl/assets/images/cards/cat.gif
 date:           2018-07-13 09:00:00
 tags:           [machine&nbsp;learning]
 categories:     [machine&nbsp;learning]
@@ -40,10 +40,10 @@ It would be weird to go through this entire post and not know what “manifold�
 
 We are now ready to discuss manifold learning. The manifold learning algorithms can be viewed as the non-linear version of PCA. We have discussed the importance of dimensionality reduction. If you think about approaches like PCA, you will realize that we are projecting the data onto some low-dimensional surface. But this is restrictive in the sense that those surfaces are all linear. What if the the best representation lies in some weirdly shaped surface? PCA will totally miss that. As you can see in this figure here, the data points are distributed in the shape of swiss roll. PCA wouldn’t work very well in this situation because it will look for a planar surface to describe this data. But the problem is that the planar surface doesn’t exist. So we end up with some sub-optimal representation of the data. Manifold learning solves this problem very efficiently.
 
-![manifold1](/assets/images/manifold1.jpg)
+![manifold1](/mldl/assets/images/manifold1.jpg)
 
 ## How do we visualize it?
 
-![manifold2](/assets/images/manifold2.jpg)
+![manifold2](/mldl/assets/images/manifold2.jpg)
 
 Algorithms for this task are based on the idea that the dimensionality of many data sets is only artificially high. Although the data points may consist of thousands of features, they may be described as a function of only a few underlying parameters. That is, the data points are actually samples from a low-dimensional manifold that is embedded in a high-dimensional space. Manifold learning algorithms attempt to uncover these parameters in order to find a low-dimensional representation of the data. There are a lot of approaches to solve this problem like **Isomap, Locally Linear Embedding, Laplacian Eigenmaps, Semidefinite Embedding, t-SNE**, etc. These algorithms works towards extracting the low-dimensional manifold that can be used to describe the high-dimensional data.

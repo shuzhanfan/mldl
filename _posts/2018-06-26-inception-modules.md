@@ -2,7 +2,7 @@
 layout:         post
 title:          Understanding Inception Modules
 subtitle:
-card-image:     /assets/images/cards/cat17.gif
+card-image:     /mldl/assets/images/cards/cat17.gif
 date:           2018-06-26 09:00:00
 tags:           [deep&nbsp;learning]
 categories:     [deep&nbsp;learning]
@@ -26,7 +26,7 @@ Now let’s say the next layer is also an Inception module.  Then each of the co
 
 Now that we get the basic idea, let’s look into the specific architecture that we’ll implement.  The following figure shows the architecture of a single inception module.
 
-![inception1](/assets/images/2018-06-26/inception1.jpg)
+![inception1](/mldl/assets/images/2018-06-26/inception1.jpg)
 
 Notice that we get the variety of convolutions that we want; specifically, we will be using 1×1, 3×3, and 5×5 convolutions along with a 3×3 max pooling.  If you’re wondering what the max pooling is doing there with all the other convolutions, we’ve got an answer: pooling is added to the Inception module for no other reason than, historically, good networks having pooling.  The larger convolutions are more computationally expensive, so the paper suggests first doing a 1×1 convolution  reducing the dimensionality of its feature map, passing the resulting feature map through a relu, and then doing the larger convolution (in this case, 5×5 or 3×3). The 1×1 convolution is key because it will be used to reduce the dimensionality of its feature map.
 
@@ -50,25 +50,25 @@ This was the coolest part of the paper.  The authors say that you can use 1×1 c
 
 Let’s examine the number of computations required of the first Inception module of GoogLeNet. The architecture for this model is tabulated in the following figure:
 
-![inception2](/assets/images/2018-06-26/inception2.jpg)
+![inception2](/mldl/assets/images/2018-06-26/inception2.jpg)
 
 In the above figure, “#3×3 reduce” and “#5×5 reduce” stands for the number of 1×1 filters in the reduction layer used before the 3×3 and 5×5 convolutions. One can see the number of 1×1 filters in the projection layer after the built-in max-pooling in the pool proj column. All these reduction/projection layers use rectified linear activation as well.
 
 The following summarizes the computation of the number of parameters in the GoogleNet: ([<u>stackoverflow ref</u>](https://stackoverflow.com/questions/30585122/how-to-calculate-the-number-of-parameters-for-google-net))
 
-![inception3](/assets/images/2018-06-26/inception3.jpg)
+![inception3](/mldl/assets/images/2018-06-26/inception3.jpg)
 
 **In the Inception module, the concatenation of 1x1, 3x3, 5x5, max-pooling means the concatenation of the corresponding filters. Due to the use of the padding, all of their output have a spatial dimension of 28x28, but they have different numbers of filters. The number of 1x1, 3x3, 5x5, max-pooling conv layer filters are 64, 128, 32, 32, respectively. Hence, the output of the inception_3a has an shape of 28x28x256.**
 
 We can tell that the net uses same padding for the convolutions inside the module, because the input and output are both 28×28.  Let’s just examine what the 5×5 convolution would be computationally if we didn’t do the dimensionality reduction. The following shows these operations.
 
-![inception4](/assets/images/2018-06-26/inception4.jpg)
+![inception4](/mldl/assets/images/2018-06-26/inception4.jpg)
 
 There would be $$(5)^2(28)^2(192)(32)=120,422,400$$ operations. That’s a lot of computing! You can see why people might want to do something to bring this number down.
 
 To do this, we will ditch the naive model shown in the above figure and use the model from the following figure. For our 5×5 convolution, we put the previous layer through a 1×1 convolution that outputs a 16 28×28 feature maps (we know there are 16 from the #5×5 reduce column), then we do the 5×5 convolutions on those feature maps which outputs 32 28×28 feature maps.
 
-![inception5](/assets/images/2018-06-26/inception5.jpg)
+![inception5](/mldl/assets/images/2018-06-26/inception5.jpg)
 
 In this case, there would be $$(1)^2(28)^2(192)(16) + (5)^2(28)^2(16)(32) = 2,408,448+10,035,200 = 12,443,648$$ operations. Although this is a still a pretty big number, we shrunk the number of computation from the naive model by a factor of ten.
 
@@ -102,7 +102,7 @@ As stated before, deep neural networks are computationally expensive. To make it
 
 Using the dimension reduced inception module, a neural network architecture was built. This was popularly known as GoogLeNet (Inception v1). The architecture is shown below:
 
-![inception6](/assets/images/2018-06-26/inception6.jpg)
+![inception6](/mldl/assets/images/2018-06-26/inception6.jpg)
 
 GoogLeNet has 9 such inception modules stacked linearly. It is 22 layers deep (27, including the pooling layers). It uses global average pooling at the end of the last inception module.
 
@@ -127,15 +127,15 @@ Inception v2 and Inception v3 were presented in the same paper. The authors prop
 
 * Factorize 5x5 convolution to two 3x3 convolution operations to improve computational speed. Although this may seem counterintuitive, a 5x5 convolution is 2.78 times more expensive than a 3x3 convolution. So stacking two 3x3 convolutions infact leads to a boost in performance. This is illustrated in the below image.
 
-![inception7](/assets/images/2018-06-26/inception7.jpg)
+![inception7](/mldl/assets/images/2018-06-26/inception7.jpg)
 
 * Moreover, they factorize convolutions of filter size nxn to a combination of 1xn and nx1 convolutions. For example, a 3x3 convolution is equivalent to first performing a 1x3 convolution, and then performing a 3x1 convolution on its output. They found this method to be 33% more cheaper than the single 3x3 convolution. This is illustrated in the below image.
 
-![inception8](/assets/images/2018-06-26/inception8.jpg)
+![inception8](/mldl/assets/images/2018-06-26/inception8.jpg)
 
 * The filter banks in the module were expanded (made wider instead of deeper) to remove the representational bottleneck. If the module was made deeper instead, there would be excessive reduction in dimensions, and hence loss of information. This is illustrated in the below image.
 
-![inception9](/assets/images/2018-06-26/inception9.jpg)
+![inception9](/mldl/assets/images/2018-06-26/inception9.jpg)
 
 * The above three principles were used to build three different types of inception modules and they will be used in the Inception v2 architecture.
 
@@ -169,15 +169,15 @@ Make the modules more uniform. The authors also noticed that some of the modules
 
 * The “stem” of Inception v4 was modified. The stem here, refers to the initial set of operations performed before introducing the Inception blocks.
 
-![inception10](/assets/images/2018-06-26/inception10.jpg)
+![inception10](/mldl/assets/images/2018-06-26/inception10.jpg)
 
 * They had three main inception modules, named A,B and C (Unlike Inception v2, these modules are infact named A,B and C). They look very similar to their Inception v2 (or v3) counterparts.
 
-![inception11](/assets/images/2018-06-26/inception11.jpg)
+![inception11](/mldl/assets/images/2018-06-26/inception11.jpg)
 
 * Inception v4 introduced specialized “Reduction Blocks” which are used to change the width and height of the grid. The earlier versions didn’t explicitly have reduction blocks, but the functionality was implemented.
 
-![inception12](/assets/images/2018-06-26/inception12.jpg)
+![inception12](/mldl/assets/images/2018-06-26/inception12.jpg)
 
 ### Inception-ResNet v1 and v2
 
@@ -196,7 +196,7 @@ Introduce residual connections that add the output of the convolution operation 
 
 * For residual addition to work, the input and output after convolution must have the same dimensions. Hence, we use 1x1 convolutions after the original convolutions, to match the depth sizes (Depth is increased after convolution).
 
-![inception13](/assets/images/2018-06-26/inception13.jpg)
+![inception13](/mldl/assets/images/2018-06-26/inception13.jpg)
 
 * The pooling operation inside the main inception modules were replaced in favor of the residual connections. However, you can still find those operations in the reduction blocks. Reduction block A is same as that of Inception v4.
 * Networks with residual units deeper in the architecture caused the network to “die” if the number of filters exceeded 1000. Hence, to increase stability, the authors scaled the residual activations by a value around 0.1 to 0.3.
@@ -204,7 +204,7 @@ Introduce residual connections that add the output of the convolution operation 
 * It was found that Inception-ResNet models were able to achieve higher accuracies at a lower epoch.
 * The final network layout for both Inception v4 and Inception-ResNet are as follows:
 
-![inception14](/assets/images/2018-06-26/inception14.jpg)
+![inception14](/mldl/assets/images/2018-06-26/inception14.jpg)
 
 ## Keras implementation
 

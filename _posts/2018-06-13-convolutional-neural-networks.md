@@ -2,7 +2,7 @@
 layout:         post
 title:          Convolutional Neural Networks
 subtitle:
-card-image:     /assets/images/cards/cat10.gif
+card-image:     /mldl/assets/images/cards/cat10.gif
 date:           2018-06-13 09:00:00
 tags:           [deep&nbsp;learning]
 categories:     [deep&nbsp;learning]
@@ -24,7 +24,7 @@ Convolutional Neural Networks take advantage of the fact that the input consists
 
 A ConvNet is made up of Layers. Every Layer has a simple API: It transforms an input 3D volume to an output 3D volume with some differentiable function that may or may not have parameters. Here is a visualization:
 
-![cnn1](/assets/images/cnn1.jpg)
+![cnn1](/mldl/assets/images/cnn1.jpg)
 
 ## Layers used to build ConvNets
 
@@ -47,7 +47,7 @@ In summary:
 * Each Layer may or may not have parameters (e.g. CONV/FC do, RELU/POOL don’t)
 * Each Layer may or may not have additional hyperparameters (e.g. CONV/FC/POOL do, RELU doesn’t)
 
-![cnn2](/assets/images/cnn2.jpg)
+![cnn2](/mldl/assets/images/cnn2.jpg)
 
 We now describe the individual layers and the details of their hyperparameters and their connectivities.
 
@@ -73,7 +73,7 @@ The Conv layer is the core building block of a Convolutional Network that does m
 
 We can compute the spatial size of the output volume as a function of the input volume size (W), the receptive field size of the Conv Layer neurons (F), the stride with which they are applied (S), and the amount of zero padding used (P) on the border. You can convince yourself that the correct formula for calculating how many neurons “fit” is given by (W-F+2P)/S+1. For example for a 7x7 input and a 3x3 filter with stride 1 and pad 0 we would get a 5x5 output. With stride 2 we would get a 3x3 output. Lets also see one more graphical example:
 
-![cnn3](/assets/images/cnn3.jpg)
+![cnn3](/mldl/assets/images/cnn3.jpg)
 
 *Use of zero-padding*. In the example above on left, note that the input dimension was 5 and the output dimension was equal: also 5. This worked out so because our receptive fields were 3 and we used zero padding of 1. If there was no zero-padding used, then the output volume would have had spatial dimension of only 3, because that it is how many neurons would have “fit” across the original input. In general, setting zero padding to be P=(F-1)/2 when the stride is S=1 ensures that the input volume and output volume will have the same size spatially. It is very common to use zero-padding in this way and we will discuss the full reasons when we talk more about ConvNet architectures.
 

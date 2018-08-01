@@ -2,7 +2,7 @@
 layout:         post
 title:          Regular Expressions
 subtitle:
-card-image:     /assets/images/cards/cat4.gif
+card-image:     /mldl/assets/images/cards/cat4.gif
 date:           2018-07-17 09:00:00
 tags:           [linux]
 categories:     [linux]

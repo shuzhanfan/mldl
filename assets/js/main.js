@@ -110,7 +110,7 @@ var getUrlParam = function(name) {
 SimpleJekyllSearch.init({
   searchInput: $('#search')[0],
   resultsContainer: $('#content')[0],
-  json: '/search.json',
+  json: '/mldl/search.json',
   searchResultTemplate: '<div class="result"><a href="{url}">{title}</a><i id=result-time>Posted on {date}</i></div>',
   noResultsText: '<div class="noresult">No results found</div>',
 })

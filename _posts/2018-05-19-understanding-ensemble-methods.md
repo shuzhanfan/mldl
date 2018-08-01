@@ -2,7 +2,7 @@
 layout:         post
 title:          Understanding Ensemble machine learning methods
 subtitle:
-card-image:     /assets/images/cards/cat4.gif
+card-image:     /mldl/assets/images/cards/cat4.gif
 date:           2018-05-19 21:00:00
 tags:           [machine&nbsp;learning]
 categories:     [machine&nbsp;learning, algorithms]

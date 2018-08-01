@@ -2,7 +2,7 @@
 layout:         post
 title:          Using scikit-learn
 subtitle:
-card-image:     /assets/images/cards/cat20.gif
+card-image:     /mldl/assets/images/cards/cat20.gif
 date:           2018-06-29 09:00:00
 tags:           [machine&nbsp;learning]
 categories:     [machine&nbsp;learning, scikit-learn]
@@ -423,7 +423,7 @@ Scipy has the **Compressed Sparse Row (CSR)** algorithm which converts a dense m
 
 #### How CSR Works
 
-![sklearn1](/assets/images/2018-06-29/sklearn1.jpg)
+![sklearn1](/mldl/assets/images/2018-06-29/sklearn1.jpg)
 
 CSR requires three arrays. The first array stores the cumulutive count of nonzero values in all current and previous rows. The second array stores column index values for each nonzero value. And the third array stores all nonzero values. I realize that may be confusing, so let’s walk through an example.
 
@@ -660,7 +660,7 @@ plt.legend(loc='upper right');
 
 ### The scikit-learn estimator API
 
-![sklearn2](/assets/images/2018-06-29/sklearn2.jpg)
+![sklearn2](/mldl/assets/images/2018-06-29/sklearn2.jpg)
 
 Every algorithm is exposed in scikit-learn via an ''Estimator'' object. (All models in scikit-learn have a very consistent interface). For instance, we first import the logistic regression class. Next, we instantiate the estimator object.
 
@@ -827,7 +827,7 @@ Much better than before! Here, the linear model was not a good fit for our probl
 
 Many instances of unsupervised learning, such as dimensionality reduction, manifold learning, and feature extraction, find a new representation of the input data without any additional input. (In contrast to supervised learning, usnupervised algorithms don't require or consider target variables like in the previous classification and regression examples).
 
-![sklearn3](/assets/images/2018-06-29/sklearn3.jpg)
+![sklearn3](/mldl/assets/images/2018-06-29/sklearn3.jpg)
 
 A very basic example is the rescaling of our data, which is a requirement for many machine learning algorithms as they are not scale-invariant -- rescaling falls into the category of data pre-processing and can barely be called learning. There exist many different rescaling techniques, and in the following example, we will take a look at a particular method that is commonly called "**standardization**". Here, we will rescale the data so that each feature is centered at zero (mean = 0) with unit variance (standard deviation = 1).
 
@@ -1022,7 +1022,7 @@ The following are some well-known clustering algorithms.
 
 Of these, Ward, SpectralClustering, DBSCAN and Affinity propagation can also work with precomputed similarity matrices.
 
-![sklearn4](/assets/images/2018-06-29/sklearn4.jpg)
+![sklearn4](/mldl/assets/images/2018-06-29/sklearn4.jpg)
 
 ## <a name="Feature Extraction">Feature Extraction</a>
 
@@ -1072,7 +1072,7 @@ Another common feature type is **derived features**, where some pre-processing s
 
 ### Bag of words CountVectorizer
 
-![sklearn5](/assets/images/2018-06-29/sklearn5.jpg)
+![sklearn5](/mldl/assets/images/2018-06-29/sklearn5.jpg)
 
 In many tasks, like in the classical spam detection, your input data is text. Free text with variable length is very far from the fixed length numeric representation that we need to do machine learning with scikit-learn. However, there is an easy and effective way to go from text data to a numeric representation using the so-called bag-of-words model, which provides a data structure that is compatible with the machine learning aglorithms in scikit-learn.
 
@@ -1195,20 +1195,20 @@ clf.fit(X_train, y_train)
 clf.score(X_test, y_test)  # 98.49%
 ```
 
-![sklearn6](/assets/images/2018-06-29/sklearn6.jpg)
+![sklearn6](/mldl/assets/images/2018-06-29/sklearn6.jpg)
 
 
 ## <a name="Cross Validation">Cross Validation</a>
 
 In the previous sections and notebooks, we split our dataset into two parts, a training set and a test set. We used the training set to fit our model, and we used the test set to evaluate its generalization performance -- how well it performs on new, unseen data.
 
-![sklearn7](/assets/images/2018-06-29/sklearn7.jpg)
+![sklearn7](/mldl/assets/images/2018-06-29/sklearn7.jpg)
 
 However, often (labeled) data is precious, and this approach lets us only use ~ 3/4 of our data for training. On the other hand, we will only ever try to apply our model 1/4 of our data for testing. A common way to use more of the data to build a model, but also get a more robust estimate of the generalization performance, is cross-validation. In cross-validation, the data is split repeatedly into a training and non-overlapping test-sets, with a separate model built for every pair. The test-set scores are then aggregated for a more robust estimate.
 
 The most common way to do cross-validation is k-fold cross-validation, in which the data is first split into k (often 5 or 10) equal-sized folds, and then for each iteration, one of the k folds is used as test data, and the rest as training data:
 
-![sklearn8](/assets/images/2018-06-29/sklearn8.jpg)
+![sklearn8](/mldl/assets/images/2018-06-29/sklearn8.jpg)
 
 This way, each data point will be in the test-set exactly once, and we can use all but a k'th of the data for training. Let us apply this technique to evaluate the KNeighborsClassifier algorithm on the Iris dataset:
 
@@ -1240,7 +1240,7 @@ We want to find a model with parameters that fits the data fairly well, and does
 
 We trade off remembering too much about the particularities and noise of the training data vs. not modeling enough of the variability. This is a trade-off that needs to be made in basically every machine learning application and is a central concept, called bias-variance-tradeoff or "overfitting vs underfitting".
 
-![sklearn9](/assets/images/2018-06-29/sklearn9.jpg)
+![sklearn9](/mldl/assets/images/2018-06-29/sklearn9.jpg)
 
 Unfortunately, there is no general rule how to find the sweet spot, and so machine learning practitioners have to find the best trade-off of model-complexity and generalization by trying several hyperparameter settings. Hyperparameters are the internal knobs or tuning parameters of a machine learning algorithm (in contrast to model parameters that the algorithm learns from the training data -- for example, the weight coefficients of a linear regression model); the number of k in K-nearest neighbors is such a hyperparameter.
 
@@ -1295,7 +1295,7 @@ print(grid.best_params_)   # {'C': 10, 'gamma': 1}
 
 There is a problem with using this score for evaluation, however. You might be making what is called a multiple hypothesis testing error. If you try very many parameter settings, some of them will work better just by chance, and the score that you obtained might not reflect how your model would perform on new unseen data. Therefore, it is good to split off a separate test-set before performing grid-search. This pattern can be seen as a training-validation-test split, and is common in machine learning:
 
-![sklearn10](/assets/images/2018-06-29/sklearn10.jpg)
+![sklearn10](/mldl/assets/images/2018-06-29/sklearn10.jpg)
 
 We can do this very easily by splitting of some test data using `train_test_split`, training `GridSearchCV` on the training set, and applying the score method to the test set.
 
@@ -1356,7 +1356,7 @@ pipeline.score(text_test, y_test)
 
 As you can see, this makes the code much shorter and easier to handle. Behind the scenes, exactly the same as above is happening. When calling `fit` on the pipeline, it will call `fit` on each step in turn. After the first step is `fit`, it will use the `transform` method of the first step to create a new representation. This will then be fed to the `fit` of the next step, and so on. Finally, on the last step, only `fit` is called.
 
-![sklearn11](/assets/images/2018-06-29/sklearn11.jpg)
+![sklearn11](/mldl/assets/images/2018-06-29/sklearn11.jpg)
 
 If we call `score`, only `transform` will be called on each step - this could be the test set after all! Then, on the last step, `score` is called with the new representation. The same goes for `predict`.
 
@@ -1392,7 +1392,7 @@ grid.score(text_test, t_test)
 
 Note that we need to tell the pipeline where at which step we wanted to set the parameter `C`. We can do this using the special __ syntax. The name before the __ is simply the name of the class, the part after __ is the parameter we want to set with grid-search.
 
-![sklearn12](/assets/images/2018-06-29/sklearn12.jpg)
+![sklearn12](/mldl/assets/images/2018-06-29/sklearn12.jpg)
 
 Another benefit of using pipelines is that we can now also search over parameters of the feature extraction with `GridSearchCV`:
 
@@ -1856,7 +1856,7 @@ In **single linkage**, we take the pair of the most similar samples (based on th
 
 In **complete linkage**, we compare the pairs of the two most dissimilar members of each cluster with each other, and we merge the 2 clusters where the distance between its 2 most dissimilar members is smallest.
 
-![sklearn13](/assets/images/2018-06-29/sklearn13.jpg)
+![sklearn13](/mldl/assets/images/2018-06-29/sklearn13.jpg)
 
 To see the agglomerative, hierarchical clustering approach in action, let us load the familiar Iris dataset -- pretending we don't know the true class labels and want to find out how many different follower species it consists of:
 
@@ -1902,7 +1902,7 @@ In DBSCAN, we distinguish between 3 different "points":
 * Border points: A border point is a point that is not a core point, since it doesn't have enough MinPts in its neighborhood, but lies within the radius epsilon of a core point.
 * Noise points: All other points that are neither core points nor border points.
 
-![sklearn14](/assets/images/2018-06-29/sklearn14.jpg)
+![sklearn14](/mldl/assets/images/2018-06-29/sklearn14.jpg)
 
 A nice feature about DBSCAN is that we don't have to specify a number of clusters upfront. However, it requires the setting of additional hyperparameters such as the value for MinPts and the radius epsilon.
 
@@ -2088,11 +2088,11 @@ As we can see above the `'target'` array consists of integers 0 and 1, where 0 s
 
 Remember the bag of word representation using a vocabulary based vectorizer:
 
-![sklearn15](/assets/images/2018-06-29/sklearn15.jpg)
+![sklearn15](/mldl/assets/images/2018-06-29/sklearn15.jpg)
 
 To workaround the limitations of the vocabulary-based vectorizers, one can use the hashing trick. Instead of building and storing an explicit mapping from the feature names to the feature indices in a Python dict, we can just use a hash function and a modulus operation:
 
-![sklearn16](/assets/images/2018-06-29/sklearn16.jpg)
+![sklearn16](/mldl/assets/images/2018-06-29/sklearn16.jpg)
 
 The `HashingVectorizer` class is an alternative to the `CountVectorizer` (or `TfidfVectorizer` class with `use_idf=False`) that internally uses the murmurhash hash function:
 

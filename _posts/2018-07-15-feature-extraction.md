@@ -2,7 +2,7 @@
 layout:         post
 title:          Feature Extraction with scikit-learn
 subtitle:
-card-image:     /assets/images/cards/cat2.gif
+card-image:     /mldl/assets/images/cards/cat2.gif
 date:           2018-07-15 09:00:00
 tags:           [machine&nbsp;learning]
 categories:     [machine&nbsp;learning]

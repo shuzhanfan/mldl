@@ -2,7 +2,7 @@
 layout:         post
 title:          How the backpropagation algorithm works
 subtitle:
-card-image:     /assets/images/cards/cat12.gif
+card-image:     /mldl/assets/images/cards/cat12.gif
 date:           2018-06-15 09:00:00
 tags:           [machine&nbsp;learning]
 categories:     [machine&nbsp;learning, algorithms]
@@ -137,7 +137,7 @@ Summing up, we've learnt that a weight will learn slowly if either the input neu
 
 None of these observations is too greatly surprising. Still, they help improve our mental model of what's going on as a neural network learns. Furthermore, we can turn this type of reasoning around. The four fundamental equations turn out to hold for any activation function, not just the standard sigmoid function (that's because, as we'll see in a moment, the proofs don't use any special properties of $$\sigma$$). And so we can use these equations to design activation functions which have particular desired learning properties. As an example to give you the idea, suppose we were to choose a (non-sigmoid) activation function $$\sigma$$ so that $$\sigma'$$ is always positive, and never gets close to zero. That would prevent the slow-down of learning that occurs when ordinary sigmoid neurons saturate. Later in the book we'll see examples where this kind of modification is made to the activation function. Keeping the four equations (BP1)-(BP4) in mind can help explain why such modifications are tried, and what impact they can have.
 
-![bp1](/assets/images/bp1.jpg)
+![bp1](/mldl/assets/images/bp1.jpg)
 
 ## Proof of the four fundamental equations
 

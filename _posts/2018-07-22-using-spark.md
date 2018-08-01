@@ -2,7 +2,7 @@
 layout:         post
 title:          Using Spark
 subtitle:
-card-image:     /assets/images/cards/cat5.gif
+card-image:     /mldl/assets/images/cards/cat5.gif
 date:           2018-07-22 09:00:00
 tags:           [deep&nbsp;learning]
 categories:     [deep&nbsp;learning, spark]
@@ -81,7 +81,7 @@ Apache Spark allows you to treat many machines as one machine and this is done v
 
 A spark cluster has a single master node and any number of worker nodes. The driver (master) and the executors (workers) run their individual Java processes and users can run them on the same horizontal spark cluster or on separate machines i.e. in a vertical spark cluster or in mixed machine configuration.
 
-![spark1](/assets/images/2018-07-22/spark1.jpg)
+![spark1](/mldl/assets/images/2018-07-22/spark1.jpg)
 
 **Role of driver in Spark architecture**. Spark driver is the master node of a Spark application. It is the central point and the entry point of the Spark Shell (Scala, Python, and R). The driver program runs the main() function of the application and is the place where the Spark Context is created. Spark Driver contains various components – DAGScheduler, TaskScheduler, BackendScheduler and BlockManager responsible for the translation of spark user code into actual spark jobs executed on the cluster.
 

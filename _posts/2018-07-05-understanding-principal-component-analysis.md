@@ -2,7 +2,7 @@
 layout:         post
 title:          Understanding PCA (Principal component analysis)
 subtitle:
-card-image:     /assets/images/cards/cat22.gif
+card-image:     /mldl/assets/images/cards/cat22.gif
 date:           2018-07-05 09:00:00
 tags:           [machine&nbsp;learning]
 categories:     [machine&nbsp;learning]
@@ -16,7 +16,7 @@ For a mathematical method, I believe most people only need to understand the log
 
 PCA is nothing but coordinate system transformation. A simple object could be described by complex and unnecessary variables. We don't intend to do so, but often can not avoid that. One problem is how to find the simplest way to describe an object? Here is an example to show that the answer could be by choosing a proper coordinate system.
 
-![pca1](/assets/images/2018-07-05/pca1.jpg)
+![pca1](/mldl/assets/images/2018-07-05/pca1.jpg)
 
 Let's assume that we have a "3-D shape detect machine" that can scan anything in front of it and output a model of that object. We use it to scan an ellipse made of paper (paper thickness can be neglected). The output model uses three axes: L (Length), W (Width) and H (Height) that are perpendicular to each other to represent the 3-D world  (see Figure 1A). So each data point on that object can be written as a function of three variables:
 
@@ -60,7 +60,7 @@ That's exactly what PCA analysis do. The term "**principal component**" denotes 
 
 Why we consider the axes along which the data has the biggest variance as the most important one? The reason is that along that axes we can get the best separation of data points. A more natural explanation could be like: along that axes we can see the largest divergence from the mean value. Just like when we talk about trees, rail ways and stars, we describe them as tall, long and far -- the dimensions that have greatest divergences.
 
-![pca2](/assets/images/2018-07-05/pca2.jpg)
+![pca2](/mldl/assets/images/2018-07-05/pca2.jpg)
 
 Suppose we measure expression levels of N genes in M tissues. We will get a data set of M*N matrix (see Figure 2A). Mathematically, we can describe the data set as:
 
@@ -84,13 +84,13 @@ Now we reduced the dimension of variables from N to K and K < N (see Figure 2E).
 
 PCA can reduce data dimension at a minimum cost. But it can not do anything other than that. we still need to use specific approaches for next step analyses like clustering, inferring or other jobs.
 
-![pca3](/assets/images/2018-07-05/pca3.jpg)
+![pca3](/mldl/assets/images/2018-07-05/pca3.jpg)
 
 Any algorithm could fail when its assumptions are not satisfied. PCA makes "the largest variance" assumption. If the data does not follow a multidimensional normal (Gaussian) distribution, PCA may not give the best principal components (see Figure 3A). For non-Gaussian source data, we will need independent component analysis (ICA) to separate data into additive, mutual statistical independent sub-components.
 
 PCA also makes assumption that all principal components are orthogonal (linear uncorrelated) to each other. So it may fail when principal components are correlated in a non-linear manner. For a ring-shape data set (see Figure 3B), PCA will give two principal components C1 and C2, which are actually correlated through rotation angle θ. It's easy to know that instead of C1 or C2, θ should be the real first-order principal component. In such cases, before applying PCA, we need to first perform a non-linear transformation on raw data to create a new linear space in which variable θ becomes a linear dimension. And this method was called kernel-PCA.
 
-![pca4](/assets/images/2018-07-05/pca4.jpg)
+![pca4](/mldl/assets/images/2018-07-05/pca4.jpg)
 
 As a conceptual framework, PCA could have different implementations. May be the most popular ones are eigenvalue decomposition (EVD) and singular value decomposition (SVD). They both can be used to find principal components and will give same results in most cases.
 

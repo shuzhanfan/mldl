@@ -2,7 +2,7 @@
 layout:         post
 title:          Using Keras
 subtitle:
-card-image:     /assets/images/cards/cat16.gif
+card-image:     /mldl/assets/images/cards/cat16.gif
 date:           2018-06-25 09:00:00
 tags:           [deep&nbsp;learning]
 categories:     [deep&nbsp;learning, keras]
@@ -591,7 +591,7 @@ plot_model(model, to_file='shared_input_layer.png')
 
 A plot of the model graph is created and saved to file.
 
-![keras1](/assets/images/2018-06-25/keras1.jpg)
+![keras1](/mldl/assets/images/2018-06-25/keras1.jpg)
 
 Running the example summarizes the model layers.
 
@@ -661,7 +661,7 @@ plot_model(model, to_file='shared_feature_extractor.png')
 
 A plot of the model graph is created and saved to file.
 
-![keras2](/assets/images/2018-06-25/keras2.jpg)
+![keras2](/mldl/assets/images/2018-06-25/keras2.jpg)
 
 Running the example summarizes the model layers.
 
@@ -748,7 +748,7 @@ plot_model(model, to_file='multiple_inputs.png')
 
 A plot of the model graph is created and saved to file.
 
-![keras3](/assets/images/2018-06-25/keras3.jpg)
+![keras3](/mldl/assets/images/2018-06-25/keras3.jpg)
 
 Running the example summarizes the model layers.
 
@@ -829,7 +829,7 @@ plot_model(model, to_file='multiple_outputs.png')
 
 A plot of the model graph is created and saved to file.
 
-![keras4](/assets/images/2018-06-25/keras4.jpg)
+![keras4](/mldl/assets/images/2018-06-25/keras4.jpg)
 
 Running the example summarizes the model layers.
 

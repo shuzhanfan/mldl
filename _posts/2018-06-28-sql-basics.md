@@ -2,7 +2,7 @@
 layout:         post
 title:          SQL Basics
 subtitle:
-card-image:     /assets/images/cards/cat19.gif
+card-image:     /mldl/assets/images/cards/cat19.gif
 date:           2018-06-28 09:00:00
 tags:           [database]
 categories:     [database]
@@ -74,7 +74,7 @@ A relation, say $$r_1$$, may include among its attributes the primary key of ano
 
 A database schema, along with primary key and foreign key dependencies, can be depicted by **schema diagrams**. The following figure shows the schema diagram for our university organization. Each relation appears as a box, with the relation name at the top in blue, and the attributes listed inside the box. Primary key attributes are shown underlined. Foreign key dependencies appear as arrows from the foreign key attributes of the referencing relation to the primary key of the referenced relation.
 
-![sql1](/assets/images/sql1.jpg)
+![sql1](/mldl/assets/images/sql1.jpg)
 
 ## <a name="Relational Operations">Relational Operations</a>
 

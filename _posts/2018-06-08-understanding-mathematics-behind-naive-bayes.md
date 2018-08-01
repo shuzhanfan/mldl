@@ -2,7 +2,7 @@
 layout:         post
 title:          Understanding the mathematics behind Naive Bayes
 subtitle:
-card-image:     /assets/images/cards/cat8.gif
+card-image:     /mldl/assets/images/cards/cat8.gif
 date:           2018-06-08 21:00:00
 tags:           [machine&nbsp;learning]
 categories:     [machine&nbsp;learning, algorithms]

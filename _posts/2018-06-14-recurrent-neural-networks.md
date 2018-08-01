@@ -2,7 +2,7 @@
 layout:         post
 title:          Recurrent Neural Networks
 subtitle:
-card-image:     /assets/images/cards/cat11.gif
+card-image:     /mldl/assets/images/cards/cat11.gif
 date:           2018-06-14 09:00:00
 tags:           [deep&nbsp;learning]
 categories:     [deep&nbsp;learning]
@@ -14,7 +14,7 @@ mathjax:        true
 
 The idea behind RNNs is to make use of sequential information. In a traditional neural network we assume that all inputs (and outputs) are independent of each other. But for many tasks that’s a very bad idea. If you want to predict the next word in a sentence you better know which words came before it. RNNs are called recurrent because they perform the same task for every element of a sequence, with the output being depended on the previous computations. Another way to think about RNNs is that they have a “memory” which captures information about what has been calculated so far. In theory RNNs can make use of information in arbitrarily long sequences, but in practice they are limited to looking back only a few steps (more on this later). Here is what a typical RNN looks like:
 
-![rnn1](/assets/images/2018-06-14/rnn1.jpg)
+![rnn1](/mldl/assets/images/2018-06-14/rnn1.jpg)
 
 The above diagram shows a RNN being unrolled (or unfolded) into a full network. By unrolling we simply mean that we write out the network for the complete sequence. For example, if the sequence we care about is a sentence of 5 words, the network would be unrolled into a 5-layer neural network, one layer for each word. The formulas that govern the computation happening in a RNN are as follows:
 
@@ -148,11 +148,11 @@ LSTMs are explicitly designed to avoid the long-term dependency problem. Remembe
 
 All recurrent neural networks have the form of a chain of repeating modules of neural network. In standard RNNs, this repeating module will have a very simple structure, such as a single tanh layer.
 
-![rnn2](/assets/images/2018-06-14/rnn2.jpg)
+![rnn2](/mldl/assets/images/2018-06-14/rnn2.jpg)
 
 LSTMs also have this chain like structure, but the repeating module has a different structure. Instead of having a single neural network layer, there are four, interacting in a very special way.
 
-![lstm1](/assets/images/2018-06-14/lstm1.jpg)
+![lstm1](/mldl/assets/images/2018-06-14/lstm1.jpg)
 
 In the above diagram, each line carries an entire vector, from the output of one node to the inputs of others. The pink circles represent pointwise operations, like vector addition, while the yellow boxes are learned neural network layers. Lines merging denote concatenation, while a line forking denote its content being copied and the copies going to different locations.
 
@@ -170,13 +170,13 @@ The first step in our LSTM is to decide what information we’re going to throw 
 
 Let’s go back to our example of a language model trying to predict the next word based on all the previous ones. In such a problem, the cell state might include the gender of the present subject, so that the correct pronouns can be used. When we see a new subject, we want to forget the gender of the old subject.
 
-![lstm2](/assets/images/2018-06-14/lstm2.jpg)
+![lstm2](/mldl/assets/images/2018-06-14/lstm2.jpg)
 
 The next step is to decide what new information we’re going to store in the cell state. This has two parts. First, a sigmoid layer called the “input gate layer” decides which values we’ll update. Next, a tanh layer creates a vector of new candidate values, $$\tilde{C_t}$$, that could be added to the state. In the next step, we’ll combine these two to create an update to the state.
 
 In the example of our language model, we’d want to add the gender of the new subject to the cell state, to replace the old one we’re forgetting.
 
-![lstm3](/assets/images/2018-06-14/lstm3.jpg)
+![lstm3](/mldl/assets/images/2018-06-14/lstm3.jpg)
 
 It’s now time to update the old cell state, $$C_{t-1}$$, into the new cell state $$C_t$$. The previous steps already decided what to do, we just need to actually do it.
 
@@ -184,13 +184,13 @@ We multiply the old state by $$f_t$$, forgetting the things we decided to forget
 
 In the case of the language model, this is where we’d actually drop the information about the old subject’s gender and add the new information, as we decided in the previous steps.
 
-![lstm4](/assets/images/2018-06-14/lstm4.jpg)
+![lstm4](/mldl/assets/images/2018-06-14/lstm4.jpg)
 
 Finally, we need to decide what we’re going to output. This output will be based on our cell state, but will be a filtered version. First, we run a sigmoid layer which decides what parts of the cell state we’re going to output. Then, we put the cell state through tanh (to push the values to be between -1 and 1) and multiply it by the output of the sigmoid gate, so that we only output the parts we decided to.
 
 For the language model example, since it just saw a subject, it might want to output information relevant to a verb, in case that’s what is coming next. For example, it might output whether the subject is singular or plural, so that we know what form a verb should be conjugated into if that’s what follows next.
 
-![lstm5](/assets/images/2018-06-14/lstm5.jpg)
+![lstm5](/mldl/assets/images/2018-06-14/lstm5.jpg)
 
 #### Variants on Long Short Term Memory
 
@@ -198,13 +198,13 @@ What I’ve described so far is a pretty normal LSTM. But not all LSTMs are the 
 
 One popular LSTM variant, introduced by Gers & Schmidhuber (2000), is adding “peephole connections.” This means that we let the gate layers look at the cell state.
 
-![lstm6](/assets/images/2018-06-14/lstm6.jpg)
+![lstm6](/mldl/assets/images/2018-06-14/lstm6.jpg)
 
 The above diagram adds peepholes to all the gates, but many papers will give some peepholes and not others.
 
 Another variation is to use coupled forget and input gates. Instead of separately deciding what to forget and what we should add new information to, we make those decisions together. We only forget when we’re going to input something in its place. We only input new values to the state when we forget something older.
 
-![lstm7](/assets/images/2018-06-14/lstm7.jpg)
+![lstm7](/mldl/assets/images/2018-06-14/lstm7.jpg)
 
 ### GRU
 
@@ -226,7 +226,7 @@ A GRU has two gates, a reset gate $$r$$, and an update gate $$z$$. Intuitively, 
 * The input and forget gates are coupled by an update gate $$z$$ and the reset gate $$r$$ is applied directly to the previous hidden state. Thus, the responsibility of the reset gate in a LSTM is really split up into both $$r$$ and $$z$$.
 * We don’t apply a second nonlinearity when computing the output.
 
-![gru](/assets/images/2018-06-14/gru.jpg)
+![gru](/mldl/assets/images/2018-06-14/gru.jpg)
 
 ### Bidirectional RNNs
 
@@ -234,7 +234,7 @@ Bidirectional RNNs combine an RNN that moves forward through time beginning from
 
 The below image illustrates the typical bidirectional RNN, where $$h(t)$$ and $$g(t)$$ standing for the (hidden) state of the sub-RNN that moves forward and backward through time, respectively. This allows the output units $$o(t)$$ to compute a representation that depends on both the past and the future but is most sensitive to the input values around time $$t$$.
 
-![birnn](/assets/images/2018-06-14/birnn.jpg)
+![birnn](/mldl/assets/images/2018-06-14/birnn.jpg)
 
 ### Deep (Bidirectional) RNNs
 

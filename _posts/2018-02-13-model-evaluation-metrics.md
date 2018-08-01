@@ -2,7 +2,7 @@
 layout:         post
 title:          Machine Learning Classification Model Evaluation Metrics
 subtitle:
-card-image:     /assets/images/cards/cat.gif
+card-image:     /mldl/assets/images/cards/cat.gif
 date:           2018-02-13 09:00:00
 tags:           [machine&nbsp;learning]
 categories:     [machine&nbsp;learning]
@@ -21,7 +21,7 @@ Wikipedia provides an excellent [<u>confusion matrix</u>](https://en.wikipedia.o
 
 So, here you go. The following table shows the formulas for accuracy, precision, recall, and F1 score.
 
-![confusion matrix](/assets/images/confusion_matrix.png)
+![confusion matrix](/mldl/assets/images/confusion_matrix.png)
 
 ### Type I and Type II error
 
@@ -29,7 +29,7 @@ As you can see from the table, all the formulas are based on the results for pre
 
 Take a look at the following image. If a doctor predicts a man is pregnant which in fact he is not (false positive), this is a Type I error. On the other hand, if a doctor predicts that a woman is not pregnant which in fact she is (false negative), this is a Type II error.
 
-![type i and type ii error](/assets/images/typeiandtypeiierror.jpg)
+![type i and type ii error](/mldl/assets/images/typeiandtypeiierror.jpg)
 
 ### Accuracy, precision, recall, F1 score
 

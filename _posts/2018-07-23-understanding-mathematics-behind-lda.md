@@ -2,7 +2,7 @@
 layout:         post
 title:          Understanding the mathematics behind Linear Discriminant Analysis (LDA)
 subtitle:
-card-image:     /assets/images/cards/cat6.gif
+card-image:     /mldl/assets/images/cards/cat6.gif
 date:           2018-07-23 09:00:00
 tags:           [machine&nbsp;learning]
 categories:     [machine&nbsp;learning, algorithms]

@@ -2,7 +2,7 @@
 layout:         post
 title:          Machine learning clustering algorithms
 subtitle:
-card-image:     /assets/images/cards/cat23.gif
+card-image:     /mldl/assets/images/cards/cat23.gif
 date:           2018-07-12 09:00:00
 tags:           [machine&nbsp;learning]
 categories:     [machine&nbsp;learning, algorithms]
@@ -79,7 +79,7 @@ Mean shift clustering is a sliding-window-based algorithm that attempts to find 
 
 Here is a diagram that shows what happens step-by-step in Meanshift.
 
-![meanshift](/assets/images/2018-07-12/meanshift.jpg)
+![meanshift](/mldl/assets/images/2018-07-12/meanshift.jpg)
 
 The blue datapoints are the initial datapoints and red are the positions of those datapoints at each iteration. Description for each step:
 
@@ -92,7 +92,7 @@ Iteration:
 5. End of iteration 4. All the clusters should have converged.
 6. End of iteration 5. All the clusters indeed have no movement. The algorithm stops here since no change is detected for all red datapoints.
 
-![meanshift1](/assets/images/2018-07-12/meanshift1.jpg)
+![meanshift1](/mldl/assets/images/2018-07-12/meanshift1.jpg)
 
 Meanshift found 3 clusters here, which is circled out above. The original data is actually generated from 4 clusters of data, but Meanshift thinks 3 can represent the set of data better, and it’s not too bad.
 
@@ -109,7 +109,7 @@ In contrast to K-means clustering there is no need to select the number of clust
 
 DBSCAN is a density based clustering algorithm similar to mean-shift, but with a couple of notable advantages. Check out the fancy graphic below and let’s get started!
 
-![dbscan](/assets/images/2018-07-12/dbscan.gif)
+![dbscan](/mldl/assets/images/2018-07-12/dbscan.gif)
 
 1. DBSCAN begins with an arbitrary starting data point that has not been visited. The neighborhood of this point is extracted using a distance epsilon $$\epsilon$$ (All points which are within the $$\epsilon$$ distance are neighborhood points).
 2. If there are a sufficient number of points (according to minPoints) within this neighborhood then the clustering process starts and the current data point becomes the first point in the new cluster. Otherwise, the point will be labeled as noise (later this noisy point might become the part of the cluster). In both cases that point is marked as “visited”.
@@ -135,13 +135,13 @@ Hierarchical clustering does not require us to specify the number of clusters an
 
 One of the major drawbacks of K-Means is its naive use of the mean value for the cluster center. We can see why this isn’t the best way of doing things by looking at the image below. On the left hand side it looks quite obvious to the human eye that there are two circular clusters with different radius’ centered at the same mean. K-Means can’t handle this because the mean values of the clusters are a very close together. K-Means also fails in cases where the clusters are not circular, again as a result of using the mean as cluster center.
 
-![gmm](/assets/images/2018-07-12/gmm.jpg)
+![gmm](/mldl/assets/images/2018-07-12/gmm.jpg)
 
 Gaussian Mixture Models (GMMs) give us more flexibility than K-Means. With GMMs we assume that the data points are Gaussian distributed; this is a less restrictive assumption than saying they are circular by using the mean. That way, we have two parameters to describe the shape of the clusters: the mean and the standard deviation! Taking an example in two dimensions, this means that the clusters can take any kind of elliptical shape (since we have standard deviation in both the x and y directions). Thus, each Gaussian distribution is assigned to a single cluster.
 
 In order to find the parameters of the Gaussian for each cluster (e.g the mean and standard deviation) we will use an optimization algorithm called Expectation–Maximization (EM). Take a look at the graphic below as an illustration of the Gaussians being fitted to the clusters. Then we can proceed on to the process of Expectation–Maximization clustering using GMMs.
 
-![gmm1](/assets/images/2018-07-12/gmm.gif)
+![gmm1](/mldl/assets/images/2018-07-12/gmm.gif)
 
 1. We begin by selecting the number of clusters (like K-Means does) and randomly initializing the Gaussian distribution parameters for each cluster. One can try to provide a good guesstimate for the initial parameters by taking a quick look at the data too. Though note, as can be seen in the graphic above, this isn’t 100% necessary as the Gaussians start out as very poor but are quickly optimized.
 2. Given these Gaussian distributions for each cluster, compute the probability that each data point belongs to a particular cluster. The closer a point is to the Gaussian’s center, the more likely it belongs to that cluster. This should make intuitive sense since with a Gaussian distribution we are assuming that most of the data lies closer to the center of the cluster.

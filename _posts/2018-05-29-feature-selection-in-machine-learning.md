@@ -2,7 +2,7 @@
 layout:         post
 title:          Feature selection in machine learning
 subtitle:
-card-image:     /assets/images/cards/cat6.gif
+card-image:     /mldl/assets/images/cards/cat6.gif
 date:           2018-05-29 09:00:00
 tags:           [machine&nbsp;learning]
 categories:     [machine&nbsp;learning]
@@ -170,7 +170,7 @@ Typically, these parameters are estimated from training data, in which the popul
 
 ## <a name="Wrapper methods">Wrapper methods</a>
 
-![wrapper method](/assets/images/feature_selection1.jpg)
+![wrapper method](/mldl/assets/images/feature_selection1.jpg)
 
 In wrapper methods, we try to use a subset of features and train a model using them. Based on the inferences that we draw from the previous model, we decide to add or remove features from your subset. The problem is essentially reduced to a search problem. These methods are usually computationally very expensive.
 
@@ -182,7 +182,7 @@ Some common examples of wrapper methods are forward feature selection, backward 
 
 ## <a name="Embedded methods">Embedded methods</a>
 
-![wrapper method](/assets/images/feature_selection2.jpg)
+![wrapper method](/mldl/assets/images/feature_selection2.jpg)
 
 Embedded methods combine the qualities’ of filter and wrapper methods. It’s implemented by algorithms that have their own built-in feature selection methods.
 

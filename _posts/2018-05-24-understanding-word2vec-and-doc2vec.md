@@ -2,7 +2,7 @@
 layout:         post
 title:          Understanding Word2Vec and Doc2Vec
 subtitle:
-card-image:     /assets/images/cards/cat5.gif
+card-image:     /mldl/assets/images/cards/cat5.gif
 date:           2018-05-24 15:00:00
 tags:           [machine&nbsp;learning, nlp]
 categories:     [machine&nbsp;learning, nlp]
@@ -41,7 +41,7 @@ In order for the examples to be trained by the neural network, we have to repres
 
 Now let's look at the architecture of the neural network. For example, assume we use a vocabulary of size V, and a hidden layer of size N, the following diagram shows the network's architecture:
 
-![skip gram](/assets/images/skip_gram.jpg)
+![skip gram](/mldl/assets/images/skip_gram.jpg)
 
 The input is a one-hot vector with a dimension `1xV`. The dimension of the weight matrix of the hidden layer is `VxN`. If we multiply them, we will get a vector with a dimension `1xN`.
 {% raw %}
@@ -86,7 +86,7 @@ All the three modifications above help Word2Vec learn word embeddings fast and a
 
 The concept of Doc2Vec is actually quite simple, if you are already familiar with the Word2vec model. Doc2vec model is based on Word2Vec, with only adding another vector (paragraph ID) to the input. The architecture of Doc2Vec model is shown below:
 
-![Doc2Vec](/assets/images/doc2vec.jpg)
+![Doc2Vec](/mldl/assets/images/doc2vec.jpg)
 
 The above diagram is based on the CBOW model, but instead of using just nearby words to predict the word, we also added another feature vector, which is document-unique. So when training the word vectors W, the document vector D is trained as well, and in the end of training, it holds a numeric representation of the document.
 

@@ -2,7 +2,7 @@
 layout:         chinese-post
 title:          歌手推荐：新西兰女歌手Lorde
 subtitle:
-card-image:     /assets/images/lorde.jpeg
+card-image:     /mldl/assets/images/lorde.jpeg
 date:           2018-03-20 21:00:00
 tags:           [音乐]
 post-card-type: image

@@ -2,7 +2,7 @@
 layout:         post
 title:          Generative Adversarial Networks
 subtitle:
-card-image:     /assets/images/cards/cat13.gif
+card-image:     /mldl/assets/images/cards/cat13.gif
 date:           2018-06-19 09:00:00
 tags:           [deep&nbsp;learning]
 categories:     [deep&nbsp;learning]
@@ -45,7 +45,7 @@ We got a high level overview of GANs. Now, we will go on to understand their nit
 
 The basic idea of GANs is to set up a game between two players. One of them is called the **generator**. The generator creates samples that are intended to come from the same distribution as the training data. The other player is the **discriminator**. The discriminator examines samples to determine whether they are real or fake. The discriminator learns using traditional supervised learning techniques, dividing inputs into two classes (real or fake). The generator is trained to fool the discriminator. We can think of the generator as being like a counterfeiter, trying to make fake money, and the discriminator as being like police, trying to allow legitimate money and catch counterfeit money. To succeed in this game, the counterfeiter must learn to make money that is indistinguishable from genuine money, and the generator network must learn to create samples that are drawn from the same distribution as the training data. The process is illustrated in the following figure:
 
-![gan1](/assets/images/2018-06-19/gan1.jpg)
+![gan1](/mldl/assets/images/2018-06-19/gan1.jpg)
 
 Figure 1: The GAN framework pits two adversaries against each other in a game. Each player is represented by a differentiable function controlled by a set of parameters. Typically these functions are implemented as deep neural networks. The game plays out in two scenarios. In one scenario, training examples $$x$$ are randomly sampled from the training set and used as input for the first player, the discriminator, represented by the function $$D$$.  The goal of the discriminator is to output the probability that its input is real rather than fake, under the assumption that half of the inputs it is ever shown are real and half are fake. In this first scenario, the goal of the discriminator is for $$D(x)$$ to be near 1. In the second scenario, inputs $$z$$ to the generator are randomly sampled from the model’s prior over the latent variables. The discriminator then receives input $$G(z)$$, a fake sample created by the generator. In this scenario, both players participate. The discriminator strives to make $$D(G(z))$$ approach 0 while the generator  strives to make the same quantity approach 1. If both models have sufficient capacity, then the Nash equilibrium of this game corresponds to the $$G(z)$$ being drawn from the same distribution as the training data, and $$D(x)=\frac{1}{2}$$ for all $$x$$.
 
@@ -59,7 +59,7 @@ Both players have cost functions that are defined in terms of both players’ pa
 
 As we saw, there are two main components of a GAN – Generator Neural Network and Discriminator Neural Network.
 
-![gan2](/assets/images/2018-06-19/gan2.jpg)
+![gan2](/mldl/assets/images/2018-06-19/gan2.jpg)
 
 The Generator Network takes an random input and tries to generate a sample of data. In the above image, we can see that generator $$G(z)$$ takes an input $$z$$ from $$p_z(z)$$, where $$z$$ is a sample from probability distribution $$p_z(z)$$. It then generates a data which is then fed into a discriminator network $$D(x)$$. The task of Discriminator Network is to take input either from the real data or from the generator and try to predict whether the input is real or generated. It takes an input $$x$$ from $$p_{data}(x)$$ where $$p_{data}(x)$$ is our real data distribution. $$D(x)$$ then solves a binary classification problem using sigmoid function giving output in the range 0 to 1.
 
@@ -92,11 +92,11 @@ So broadly a training phase has two main subparts and they are done sequentially
 
 **Pass 1**: Train discriminator and freeze generator (freezing means setting training as false. The network does only forward pass and no backpropagation is applied)
 
-![gan3](/assets/images/2018-06-19/gan3.jpg)
+![gan3](/mldl/assets/images/2018-06-19/gan3.jpg)
 
 **Pass 2**: Train generator and freeze discriminator
 
-![gan4](/assets/images/2018-06-19/gan4.jpg)
+![gan4](/mldl/assets/images/2018-06-19/gan4.jpg)
 
 ### Steps to train a GAN
 
@@ -110,7 +110,7 @@ So broadly a training phase has two main subparts and they are done sequentially
 
 A pseudocode of GAN training can be thought out as follows
 
-![gan5](/assets/images/2018-06-19/gan5.jpg)
+![gan5](/mldl/assets/images/2018-06-19/gan5.jpg)
 
 Note: This is the first implementation of GAN that was published in the paper. Numerous improvements/updates in the pseudocode can be seen in the recent papers such as adding batch normalization in the generator and discrimination network, training generator k times etc.
 

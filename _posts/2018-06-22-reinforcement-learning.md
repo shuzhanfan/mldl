@@ -2,7 +2,7 @@
 layout:         post
 title:          Reinforcement Learning
 subtitle:
-card-image:     /assets/images/cards/cat15.gif
+card-image:     /mldl/assets/images/cards/cat15.gif
 date:           2018-06-22 09:00:00
 tags:           [deep&nbsp;learning]
 categories:     [deep&nbsp;learning]

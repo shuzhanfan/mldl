@@ -2,7 +2,7 @@
 layout:         post
 title:          Understanding Maximum Likelihood Estimation
 subtitle:
-card-image:     /assets/images/cards/cat14.gif
+card-image:     /mldl/assets/images/cards/cat14.gif
 date:           2018-06-20 09:00:00
 tags:           [machine&nbsp;learning]
 categories:     [machine&nbsp;learning, algorithms]
@@ -118,7 +118,7 @@ As seen with the Normal Distribution case, the parameters relies heavily on our 
 
 ## How could we use this information in building classifier or regression model?
 
-![mle](/assets/images/mle.jpg)
+![mle](/mldl/assets/images/mle.jpg)
 
 Our problem shows data with three classes of red, blue, and green. Our independent variables are x and y and we assume these distributions to be Gaussian. With notes above, given our x and y data we can estimate parameters for each classes.
 

@@ -2,7 +2,7 @@
 layout:         post
 title:          Google Cloud Platform (GCP)
 subtitle:
-card-image:     /assets/images/cards/cat7.gif
+card-image:     /mldl/assets/images/cards/cat7.gif
 date:           2018-07-25 09:00:00
 tags:           [cloud]
 categories:     [cloud]
@@ -393,7 +393,7 @@ Cloud Dataflow is a fully-managed service for transforming data via streaming (r
 
 Cloud Dataflow shines especially in streaming applications and commonly sits between your "front end services/customer facing solutions usually high throughput" and your "backend services/Data Storage solutions like BigQuery".
 
-![gcp](/assets/images/gcp.jpg)
+![gcp](/mldl/assets/images/gcp.jpg)
 
 Our favorite diagram in the course. Cloud Dataflow takes input from Pub/Sub and Cloud Storage via streaming and batch modes, processes them, and then pushes them to BigQuery to store and analyze. Note that it is doing parallel data processing.
 

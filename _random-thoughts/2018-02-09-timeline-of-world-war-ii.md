@@ -2,7 +2,7 @@
 layout:         chinese-post
 title:          二战历史线
 subtitle:
-card-image:     /assets/images/ww2airplane.gif
+card-image:     /mldl/assets/images/ww2airplane.gif
 date:           2018-02-13 21:00:00
 tags:           [历史]
 post-card-type: image

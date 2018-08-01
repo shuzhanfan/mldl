@@ -2,7 +2,7 @@
 layout:         post
 title:          Understanding the mathematics behind Support Vector Machines
 subtitle:
-card-image:     /assets/images/cards/cat3.gif
+card-image:     /mldl/assets/images/cards/cat3.gif
 date:           2018-05-07 21:00:00
 tags:           [machine&nbsp;learning]
 categories:     [machine&nbsp;learning, algorithms]
@@ -43,7 +43,7 @@ $$
 $$
 {% endraw %}
 
-![figure 1](/assets/images/2018-05-07/1.jpg)
+![figure 1](/mldl/assets/images/2018-05-07/1.jpg)
 
 It is worth noting that the norm of a direction vector is always equal to 1. Because of this, the direction vector **w** is also called the unit vector.
 
@@ -58,7 +58,7 @@ $$
 $$
 {% endraw %}
 
-![figure 2](/assets/images/2018-05-07/2.jpg)
+![figure 2](/mldl/assets/images/2018-05-07/2.jpg)
 
 By looking at figure 3, we can see $$\theta=\beta-\alpha$$. Then we can get:
 {% raw %}
@@ -70,7 +70,7 @@ $$
 $$
 {% endraw %}
 
-![figure 3](/assets/images/2018-05-07/3.jpg)
+![figure 3](/mldl/assets/images/2018-05-07/3.jpg)
 
 We substitute this into the geometric dot product formula, we get:
 {% raw %}
@@ -93,9 +93,9 @@ we will start from the linearly separable cases (since they are easy to understa
 
 Figure 4 shows the two-dimensional data are separated by a line. In this case, we say the data are linearly separable. Figure 5 is an example of non-linearly separable data, which means we can not find a line to separate the two-dimensional data. Similarly, for three-dimensional data, we say the data are linearly separable if we can find a plane to separate them.
 
-![figure 4](/assets/images/2018-05-07/4.jpg)
+![figure 4](/mldl/assets/images/2018-05-07/4.jpg)
 
-![figure 5](/assets/images/2018-05-07/5.jpg)
+![figure 5](/mldl/assets/images/2018-05-07/5.jpg)
 
 ### Hyperplane
 

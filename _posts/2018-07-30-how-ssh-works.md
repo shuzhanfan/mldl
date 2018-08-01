@@ -2,7 +2,7 @@
 layout:         post
 title:          How does SSH work
 subtitle:
-card-image:     /assets/images/cards/cat10.gif
+card-image:     /mldl/assets/images/cards/cat10.gif
 date:           2018-07-30 09:00:00
 tags:           [linux]
 categories:     [linux]
@@ -54,7 +54,7 @@ The significant advantage offered by SSH over its predecessors is the use of enc
 
 Symmetric encryption is a form of encryption where a **secret key** is used for both encryption and decryption of a message by both the client and the host. Effectively, any one possessing the key can decrypt the message being transferred.
 
-![ssh1](/assets/images/2018-07-30/ssh1.jpg)
+![ssh1](/mldl/assets/images/2018-07-30/ssh1.jpg)
 
 Symmetrical encryption is often called **shared key** or **shared secret** encryption. There is usually only one key that is used, or sometimes a pair keys where one key can easily be calculated using the other key.
 
@@ -70,7 +70,7 @@ For example, if two Ubuntu 14.04 LTS machines are communicating with each other 
 
 Unlike symmetrical encryption, asymmetrical encryption uses two separate keys for encryption and decryption. These two keys are known as the **public key** and the **private key**. Together, both these keys form a **public-private key pair**.
 
-![ssh2](/assets/images/2018-07-30/ssh2.jpg)
+![ssh2](/mldl/assets/images/2018-07-30/ssh2.jpg)
 
 The public key, as the name suggest is openly distributed and shared with all parties. While it is closely linked with the private key in terms of functionality, the private key cannot be mathematically computed from the public key. The relation between the two keys is highly complex: a message that is encrypted by a machine’s public key, can only be decrypted by the same machine’s private key. This one-way relation means that the public key cannot decrypt its own messages, nor can it decrypt anything encrypted by the private key.
 
@@ -84,7 +84,7 @@ Once a secured symmetric communication has been established, the server uses the
 
 One-way hashing is another form of cryptography used in Secure Shell Connections. One-way-hash functions differ from the above two forms of encryption in the sense that they are never meant to be decrypted. They generate a unique value of a fixed length for each input that shows no clear trend which can exploited. This makes them practically impossible to reverse.
 
-![ssh3](/assets/images/2018-07-30/ssh3.jpg)
+![ssh3](/mldl/assets/images/2018-07-30/ssh3.jpg)
 
 It is easy to generate a cryptographic hash from a given input, but impossible to generate the input from the hash. This means that if a client holds the correct input, they can generate the crypto-graphic hash and compare its value to verify whether they possess the correct input.
 
@@ -100,7 +100,7 @@ The way SSH works is by making use of a client-server model to allow for authent
 
 SSH operates on TCP port 22 by default (though this can be changed if needed). The host (server) listens on port 22 (or any other SSH assigned port) for incoming connections. It organizes the secure connection by authenticating the client and opening the correct shell environment if the verification is successful.
 
-![ssh4](/assets/images/2018-07-30/ssh4.jpg)
+![ssh4](/mldl/assets/images/2018-07-30/ssh4.jpg)
 
 The client must begin the SSH connection by initiating the TCP handshake with the server, ensuring a secured symmetric connection, verifying whether the identity displayed by the server match previous records (typically recorded in an RSA key store file), and presenting the required user credentials to authenticate the connection.
 

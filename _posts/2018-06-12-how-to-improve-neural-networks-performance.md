@@ -2,7 +2,7 @@
 layout:         post
 title:          How to improve neural networks/ deep learning performance
 subtitle:
-card-image:     /assets/images/cards/cat9.gif
+card-image:     /mldl/assets/images/cards/cat9.gif
 date:           2018-06-12 09:00:00
 tags:           [machine&nbsp;learning, deep&nbsp;learning]
 categories:     [machine&nbsp;learning, deep&nbsp;learning]
@@ -230,7 +230,7 @@ It will be doing one or the other, just by varying degrees. A quick way to get i
 * If training and validation are both low, you are probably underfitting and you can probably increase the capacity of your network and train more or longer.
 * If there is an inflection point when training goes above the validation, you might be able to use early stopping.
 
-![Plot of Model Accuracy on Train and Validation Datasets](/assets/images/epoch_accuracies.jpg)
+![Plot of Model Accuracy on Train and Validation Datasets](/mldl/assets/images/epoch_accuracies.jpg)
 
 Create these plots often and study them for insight into the different techniques you can use to improve performance. These plots might be the most valuable diagnostics you can create.
 
