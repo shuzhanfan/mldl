@@ -9,7 +9,7 @@ repository: shuzhanfan/mldl
 baseurl: /mldl
 url: https://shuzhanfan.github.io
 
-permalink: /:year/:month/:title/
+permalink: :year/:month/:title
 
 # Format
 markdown: kramdown
