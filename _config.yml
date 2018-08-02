@@ -1,8 +1,8 @@
 # Basic
-title: Shuzhan Fan
-author: Shuzhan Fan
-email: sfan2@lsu.edu
-description: Shuzhan Fan's personal website.
+title: Shuzhan
+author: Shuzhan
+email:
+description: Shuzhan's personal website.
 timezone: "-0600"
 
 repository: shuzhanfan/mldl
@@ -24,12 +24,11 @@ paginate_path: "/page:num/"
 
 # Social
 social:
-    github: shuzhanfan
-    mail: sfan2@lsu.edu
+    github: 
+    mail:
 
 # Plugins
 plugins:
-    - jekyll-seo-tag
     - jemoji
 
 #Collections
