@@ -22,7 +22,7 @@ mathjax:        true
     * <a href="#Shared Layers Model">Shared Layers Model</a>
     * <a href="#Multiple Input and Output Models">Multiple Input and Output Models</a>
     * <a href="#Best Practices">Best Practices</a>
-
+* <a href="#Usage of Callbacks">Usage of Callbacks</a>
 
 Keras is a high-level neural networks API, written in Python and capable of running on top of TensorFlow, CNTK, or Theano. It was developed with a focus on enabling fast experimentation. Being able to go from idea to result with the least possible delay is key to doing good research.
 
@@ -864,6 +864,41 @@ In this section, I want to give you some tips to get the most out of the functio
 * **Review Graph Plots**. Always create a plot of the model graph and review it to ensure that everything was put together as you intended.
 * **Name the layers**. You can assign names to layers that are used when reviewing summaries and plots of the model graph. For example: Dense(1, name=’hidden1′).
 * **Separate Submodels**. Consider separating out the development of submodels and combine the submodels together at the end.
+
+
+## <a name="Usage of Callbacks">Usage of Callbacks</a>
+
+A callback is a set of functions to be applied at given stages of the training procedure. You can use callbacks to get a view on internal states and statistics of the model during training. You can pass a list of callbacks (as the keyword argument `callbacks`) to the `.fit()` method of the `Sequential` or `Model` classes. The relevant methods of the callbacks will then be called at each stage of the training.
+
+### ModelCheckpoint
+
+Save the model after every epoch.
+
+```python
+keras.callbacks.ModelCheckpoint(filepath, monitor='val_loss', verbose=0, save_best_only=False, save_weights_only=False, mode='auto', period=1)
+```
+
+`filepath` can contain named formatting options, which will be filled the value of `epoch` and keys in `logs` (passed in `on_epoch_end`). For example: if `filepath` is `weights.{epoch:02d}-{val_loss:.2f}.hdf5`, then the model checkpoints will be saved with the epoch number and the validation loss in the filename.
+
+* `monitor`: quantity to monitor.
+* `save_best_only`: if `save_best_only=True`, the latest best model according to the quantity monitored will not be overwritten.
+* `mode`:  one of {auto, min, max}. If `save_best_only=True`, the decision to overwrite the current save file is made based on either the maximization or the minimization of the monitored quantity. For `val_acc`, this should be `max`, for `val_loss` this should be `min`, etc. In `auto` mode, the direction is automatically inferred from the name of the monitored quantity.
+* `save_weights_only`: if True, then only the model's weights will be saved (`model.save_weights(filepath)`), else the full model is saved (`model.save(filepath)`).
+
+### EarlyStopping
+
+Stop training when a monitored quantity has stopped improving.
+
+```python
+keras.callbacks.EarlyStopping(monitor='val_loss', min_delta=0, patience=0, verbose=0, mode='auto', baseline=None)
+```
+
+* `monitor`: quantity to be monitored.
+* `min_delta`: minimum change in the monitored quantity to qualify as an improvement, i.e. an absolute change of less than min_delta, will count as no improvement.
+* `patience`: number of epochs with no improvement after which training will be stopped.
+* `mode`:  one of {auto, min, max}. In `min` mode, training will stop when the quantity monitored has stopped decreasing; in `max` mode it will stop when the quantity monitored has stopped increasing; in `auto` mode, the direction is automatically inferred from the name of the monitored quantity.
+* `baseline`: Baseline value for the monitored quantity to reach. Training will stop if the model doesn't show improvement over the baseline.
+
 
 References:
 
