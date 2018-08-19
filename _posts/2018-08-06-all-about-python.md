@@ -19,8 +19,8 @@ mathjax:        true
   * <a href="#deque">deque</a>
   * <a href="#namedtuple">namedtuple</a>
 * <a href="#Generators">Generators</a>
-* <a href="#"></a>
-* <a href="#"></a>
+* <a href="#configparser">configparser</a>
+* <a href="#Logging">Logging</a>
 * <a href="#"></a>
 * <a href="#"></a>
 * <a href="#"></a>
@@ -398,7 +398,7 @@ def get_primes(number):
         number += 1
 ```
 
-If a generator function calls `return` or reaches the end of its definition, a `StopIteration` exception is raised. This signals to whoever was calling `next()`` that the generator is exhausted (this is normal iterator behavior). It is also the reason using the `while True`: loop is present in `get_primes`. If it weren't, the first time `next()` was called we would check if the number is prime and possibly yield it. If `next()` were called again, we would uselessly add 1 to number and hit the end of the generator function (causing `StopIteration` to be raised). Once a generator has been exhausted, calling `next()` on it will result in an error, so you can only consume all the values of a generator once.
+If a generator function calls `return` or reaches the end of its definition, a `StopIteration` exception is raised. This signals to whoever was calling `next()` that the generator is exhausted (this is normal iterator behavior). It is also the reason using the `while True`: loop is present in `get_primes`. If it weren't, the first time `next()` was called we would check if the number is prime and possibly yield it. If `next()` were called again, we would uselessly add 1 to number and hit the end of the generator function (causing `StopIteration` to be raised). Once a generator has been exhausted, calling `next()` on it will result in an error, so you can only consume all the values of a generator once.
 
 Thus, the `while` loop is there to make sure we never reach the end of `get_primes`. It allows us to generate a value for as long as `next()` is called on the generator. This is a common idiom when dealing with infinite series (and `generators` in general).
 
@@ -431,6 +431,184 @@ Then, back in `solve_number_10`:
 4. The `for` loop requests the next element from `get_primes`
 
 This time, though, instead of entering `get_primes` back at the top, we resume at line 5, where we left off. Most importantly, `number` still has the same value it did when we called `yield` (i.e. 3). Remember, `yield` both passes a value to whoever called `next()`, and saves the "state" of the generator function. Clearly, then, `number` is incremented to 4, we hit the top of the `while` loop, and keep incrementing number until we hit the next prime number (5). Again we yield the value of number to the `for` loop in `solve_number_10`. This cycle continues until the `for` loop stops (at the first prime greater than 2,000,000).
+
+
+## <a name="ConfigParser">configparser</a>
+
+The `configparser` module in Python is used for working with configuration files. It is much similar to Windows INI files. You can use it to manage user-editable configuration files for an application. The configuration files are organized into **sections**, and each section can contain name-value pairs for configuration data. Config file sections are identified by looking for lines starting with `[` and ending with `]`. The value between the square brackets is the section name, and can contain any characters except square brackets. **Options** are listed one per line within a section. The line starts with the name of the option, which is separated from the value by a colon or equal sign. Whitespace around the separator is ignored when the file is parsed.
+
+A sample configuration file with section “bug_tracker” and three options would look like:
+
+```
+[bug_tracker]
+url = http://localhost:8080/bugs/
+username = dhellmann
+password = SECRET
+```
+
+### Reading Configuration Files
+
+The most common use for a configuration file is to have a user or system administrator edit the file with a regular text editor to set application behavior defaults, and then have the application read the file, parse it, and act based on its contents.
+
+Use the `read()` method of `SafeConfigParser` to read the configuration file.
+
+```python
+#derived class of configparser that implements a more-safe variant of the magical interpolation feature. This implementation is more predictable as well. New applications should prefer this version.
+from configparser import SafeConfigParser
+parser = SafeConfigParser()
+#RawConfigParser.read(filenames) attempts to read and parse a list of filenames, returning a list of filenames which were successfully parsed.
+parser.read('simple.ini')
+#RawConfigParser.get(section,option) gets an option value for the named section
+print parser.get('bug_tracker', 'url')
+```
+
+### Accessing Configuration Settings
+
+`SafeConfigParser` includes methods for examining the structure of the parsed configuration, including listing the sections and options, and getting their values.
+
+This configuration file includes two sections for separate web services:
+
+```
+[bug_tracker]
+url = http://localhost:8080/bugs/
+username = dhellmann
+password = SECRET
+
+[wiki]
+url = http://localhost:8080/wiki/
+username = dhellmann
+password = SECRET
+```
+
+And this sample program exercises some of the methods for looking at the configuration data, including `sections()`, `options()`, and `items()`:
+
+```python
+from configparser import SafeConfigParser
+parser = SafeConfigParser()
+parser.read(‘multisection.ini’)
+#RawCongifParser.sections() returns a list of the sections available
+for section_name in parser.sections():
+    print ‘Section:’, section_name
+    #RawConfigParser.options(section) returns a list of options available in the specified section
+    print ‘    Options:’, parser.options(section_name)
+    #RawConfigParser.items(section) returns a list of (name,value) pairs for each option in the given section
+    for name, value in parser.items(section_name):
+			print ‘    %s = %s’ % (name, value)
+```
+
+### Testing whether values are present
+
+To test if a section exists, use `has_section()`, passing the section name. Use `has_option()` to test if an option exists within a section.
+
+### Values types
+
+All section and option names are treated as strings, but option values can be strings, integers, floating point numbers, or booleans. There are a range of possible boolean values that are converted true or false, e.g. `1, 0, yes, no, true, false, on, off`.
+
+`SafeConfigParser` does not make any attempt to understand the option type. The application is expected to use the correct method to fetch the value as the desired type. `get()` always returns a string. Use `getint()` for integers, `getfloat()` for floating point numbers, and `getboolean()` for boolean values.
+
+```python
+from configparser import SafeConfigParser
+parser = SafeConfigParser()
+parser.read('types.ini')
+for name in parser.options(‘ints’):
+	string_value = parser.get(‘ints’,name)
+	#RawConfigParser.getint(section, option), a convenience method which coerces the option in the specifed section to an integer
+	value = parser.getint(‘ints’,name)
+for name in parser.options('floats'):
+    string_value = parser.get('floats', name)
+	#RawConfigParser.getfloat(section,option), a convenience method which coerces the option in the specified section to a floating point number
+    value = parser.getfloat('floats', name)
+for name in parser.options('booleans'):
+    string_value = parser.get('booleans', name)
+	#RawConfigParser.getboolean(section,option), a convenience method which coerces the option in the specified option to a Boolean value.
+   	value = parser.getboolean('booleans', name)
+```
+
+
+## <a name="Logging">Logging</a> ([<u>ref</u>](https://docs.python.org/3/howto/logging.html))
+
+`Logging` is a means of tracking events that happen when some software runs. The software’s developer adds logging calls to their code to indicate that certain events have occurred. An event is described by a descriptive message which can optionally contain variable data (i.e. data that is potentially different for each occurrence of the event). Events also have an importance which the developer ascribes to the event; the importance can also be called the level or severity.
+
+The logging functions are named after the level or severity of the events they are used to track. The standard levels and their applicability are described below (in increasing order of severity):
+
+* **DEBUG**: Detailed information, typically of interest only when diagnosing problems.
+* **INFO**: Confirmation that things are working as expected.
+* **WARNING**: An indication that something unexpected happened, or indicative of some problem in the near future (e.g. ‘disk space low’). The software is still working as expected.
+* **ERROR**: Due to a more serious problem, the software has not been able to perform some function.
+* **CRITICAL**: A serious error, indicating that the program itself may be unable to continue running.
+
+The default level is `WARNING`, which means that only events of this level and above will be tracked, unless the logging package is configured to do otherwise. Events that are tracked can be handled in different ways. The simplest way of handling tracked events is to print them to the console. Another common way is to write them to a disk file.
+
+The logging library takes a modular approach and offers several categories of components: loggers, handlers, filters, and formatters.
+
+* **Loggers** expose the interface that application code directly uses.
+* **Handlers** send the log records (created by loggers) to the appropriate destination.
+* **Filters** provide a finer grained facility for determining which log records to output.
+* **Formatters** specify the layout of log records in the final output.
+
+It is, of course, possible to log messages to different destinations. Destinations are served by `handler` classes. By default, no destination is set for any logging messages. You can specify a destination (such as console or file) by using `basicConfig()`.
+
+A common code example for creating a `logger` object and setting the level to `info`:
+
+```python
+def _logger():
+    import logging
+    #create a logger
+    logger = logging.getLogger()
+    logger.setLevel(logging.INFO)
+    #create console handler and set level to info
+    handler = logging.StreamHandler()
+    handler.setLevel(logging.INFO)
+    #create a formatter
+    formatter = logging.Formatter("%(message)s")
+    #add formatter to console handler
+    handler.setFormatter(formatter)
+    #add console handler to logger
+    logger.addHandler(handler)
+    return logger
+```
+
+### Loggers
+
+`Logger` objects have a threefold job. First, they expose several methods to application code so that applications can log messages at runtime. Second, logger objects determine which log messages to act upon based upon severity (the default filtering facility) or filter objects. Third, logger objects pass along relevant log messages to all interested log handlers.
+
+The most widely used methods on logger objects fall into two categories: configuration and message sending.
+
+These are the most common configuration methods:
+
+* `Logger.setLevel()` specifies the lowest-severity log message a logger will handle, where debug is the lowest built-in severity level and critical is the highest built-in severity. For example, if the severity level is INFO, the logger will handle only INFO, WARNING, ERROR, and CRITICAL messages and will ignore DEBUG messages.
+* `Logger.addHandler()` adds handler objects from the logger object.
+* `Logger.addFilter()`adds filter objects from the logger object.
+
+With the logger object configured, the following methods create log messages:
+
+* `Logger.debug()`, `Logger.info()`, `Logger.warning()`, `Logger.error()`, and `Logger.critical()` all create log records with a message and a level that corresponds to their respective method names. The message is actually a format string, which may contain the standard string substitution syntax of %s, %d, %f, and so on. The rest of their arguments is a list of objects that correspond with the substitution fields in the message.
+
+### Handlers
+
+`Handler` objects are responsible for dispatching the appropriate log messages (based on the log messages’ severity) to the handler’s specified destination. `Logger` objects can add zero or more handler objects to themselves with an `addHandler()` method. As an example scenario, an application may want to send all log messages to a log file, all log messages of error or higher to stdout, and all messages of critical to an email address. This scenario requires three individual handlers where each handler is responsible for sending messages of a specific severity to a specific location.
+
+The most commonly used handler types are `StreamHandler` and `FileHandler`.
+
+There are very few methods in a handler for application developers to concern themselves with. The only handler methods that seem relevant for application developers who are using the built-in handler objects (that is, not creating custom handlers) are the following configuration methods:
+
+* The `setLevel()` method, just as in logger objects, specifies the lowest severity that will be dispatched to the appropriate destination. Why are there two `setLevel()` methods? The level set in the logger determines which severity of messages it will pass to its handlers. The level set in each handler determines which messages that handler will send on.
+* `setFormatter()` selects a Formatter object for this handler to use.
+
+### Formatters
+
+Formatter objects configure the final order, structure, and contents of the log message. The constructor takes three optional arguments – a message format string, a date format string and a style indicator.
+
+```python
+logging.Formatter.__init__(fmt=None, datefmt=None, style='%')
+```
+
+If there is no message format string, the default is to use the raw message. If there is no date format string, the default date format is `%Y-%m-%d %H:%M:%S` with the milliseconds tacked on at the end. The style is one of `%`, `{` or `$`. If one of these is not specified, then `%` will be used.
+
+If the style is `%`, the message format string uses `%(<dictionary key>)s` styled string substitution; the possible keys are documented in [<u>LogRecord attributes</u>](https://docs.python.org/3/library/logging.html#logrecord-attributes).
+
+
+
 
 
 References:
